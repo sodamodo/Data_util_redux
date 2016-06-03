@@ -48,15 +48,30 @@ geodatabase. The try/accept clauses are because the program will throw an
 exception if the geodatbase ro the raster dataset already exists
 the exceptions need to be changed to be more specific
 """
-try:
-    arcpy.management.CreateFileGDB(os.path.dirname(os.path.abspath(__file__)), "data/datastore")
-except:
+
+if arcpy.Exists("data/datastore.gdb"):
     pass
 
-try:
-    arcpy.CreateMosaicDataset_management("data/datastore.gdb", "mosaick_dataset", 'data/NED_Reference/ned_13arcsec_g.shp' )
-except:
+else:
+    arcpy.management.CreateFileGDB(os.path.dirname(os.path.abspath(__file__)), "data/datastore")
+
+if arcpy.Exists("data/datastore.gdb/mosaick_dataset"):
     pass
+
+else:
+    arcpy.CreateMosaicDataset_management("data/datastore.gdb", "mosaick_dataset", 'data/NED_Reference/ned_13arcsec_g.shp' )
+
+#
+
+# try:
+#     arcpy.management.CreateFileGDB(os.path.dirname(os.path.abspath(__file__)), "data/datastore")
+# except:
+#     pass
+#
+# try:
+#     arcpy.CreateMosaicDataset_management("data/datastore.gdb", "mosaick_dataset", 'data/NED_Reference/ned_13arcsec_g.shp' )
+# except:
+#     pass
 """
 This creates feature layers using the variables that point
 to the shapefiles. The feature layer is given a name that
