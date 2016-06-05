@@ -61,17 +61,7 @@ if arcpy.Exists("data/datastore.gdb/mosaick_dataset"):
 else:
     arcpy.CreateMosaicDataset_management("data/datastore.gdb", "mosaick_dataset", 'data/NED_Reference/ned_13arcsec_g.shp' )
 
-#
 
-# try:
-#     arcpy.management.CreateFileGDB(os.path.dirname(os.path.abspath(__file__)), "data/datastore")
-# except:
-#     pass
-#
-# try:
-#     arcpy.CreateMosaicDataset_management("data/datastore.gdb", "mosaick_dataset", 'data/NED_Reference/ned_13arcsec_g.shp' )
-# except:
-#     pass
 """
 This creates feature layers using the variables that point
 to the shapefiles. The feature layer is given a name that
